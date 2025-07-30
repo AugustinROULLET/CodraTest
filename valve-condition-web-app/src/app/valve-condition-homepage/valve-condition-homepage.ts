@@ -29,8 +29,20 @@ export class ValveConditionHomepage {
     }
   }
 
+  public requestPredictionUsingIndex(): void {
+    const indexInput = document.getElementById("sampleIndex") as HTMLInputElement;
+    const id = parseInt(indexInput.value, 10);
+    if (isNaN(id)) {
+      this.outputText = "Please enter a valid sample index.";
+      return;
+    }
+    this.http.post(APP_CONFIG.apiUrl + '/predict_with_index', { index: id }).subscribe({
+      next: response => this.outputText = "Predicted valve condition: " + response,
+      error: error => this.outputText = "Error during prediction: " + error.message
+    });
+  }
 
-  public checkValveCondition(): void {
+  public checkValveConditionUsingFiles(): void {
     // check file content before the prediction request
     if (!this.pressureFile || !this.flowFile) {
       this.outputText = 'Please select both files.';
@@ -91,7 +103,7 @@ export class ValveConditionHomepage {
     // send a prediction request
     this.http.post(APP_CONFIG.apiUrl + '/predict', data).subscribe({
       next: response => this.outputText = "Predicted valve condition: " + response,
-      error: error => this.outputText = "Error during prediction: " + error
+      error: error => this.outputText = "Error during prediction: " + error.message
     });
   }
 }

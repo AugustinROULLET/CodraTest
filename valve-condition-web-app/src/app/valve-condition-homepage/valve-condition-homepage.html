@@ -10,11 +10,16 @@
     <label for="flowFile" class="label">Flow :</label>
     <input type="file" id="flowFile" (change)="onFileSelected($event, 'flow')" class="file-input" />
   </div>
+
+  <div class="input-group">
+    <label for="sampleIndex" class="label">Sample Index :</label>
+    <input type="number" id="sampleIndex" class="number-input" />
+  </div>
   
   <div class="button-group">
-    <button (click)="checkValveCondition()" [disabled]="isTraining">Check Valve Condition</button>
+    <button (click)="checkValveConditionUsingFiles()" [disabled]="isTraining">Check Valve Condition (using uploaded files)</button>
+    <button (click)="requestPredictionUsingIndex()" [disabled]="isTraining">Check Valve Condition (using index)</button>
     <button (click)="trainModel()" [disabled]="isTraining">Train Model</button>
-
   </div>
   
   <div class="output-group">
