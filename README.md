@@ -65,3 +65,20 @@ Pour réentraîner le modele:
 - cliquer sur `Train Model`
 - Le serveur affiche les résultats d'entraînement en temps réel dans la console.
 - Le message "Done" s'affiche à la fin de l'entraînement.
+
+---
+
+## Conteneur Docker
+
+Il est possible de créer un conteneur **Docker** du serveur `valve-condition-server`.
+Pour cela, il faut se rendre dans le dossier `valve-condition-server` puis exécuter les commandes suivantes :
+
+```bash
+docker build -t valve-server .  
+```
+Cette commande crée l’image Docker nommée `valve-server`.
+Ensuite, pour lancer le conteneur, exécuter :
+```bash
+docker run -p 8000:8000 valve-server  
+```
+L’option `-p 8000:8000` permet de faire correspondre le port 8000 de la machine hôte au port 8000 à l’intérieur du conteneur, ce qui rend le serveur accessible via `http://localhost:8000`.
