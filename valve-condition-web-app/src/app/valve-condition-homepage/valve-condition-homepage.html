@@ -1,0 +1,24 @@
+<div class="container">
+  <h2 class="title">Valve Condition Prediction</h2>
+  
+  <div class="input-group">
+    <label for="pressureFile" class="label">Pressure :</label>
+    <input type="file" id="pressureFile" (change)="onFileSelected($event, 'pressure')" class="file-input" />
+  </div>
+  
+  <div class="input-group">
+    <label for="flowFile" class="label">Flow :</label>
+    <input type="file" id="flowFile" (change)="onFileSelected($event, 'flow')" class="file-input" />
+  </div>
+  
+  <div class="button-group">
+    <button (click)="checkValveCondition()" [disabled]="isTraining">Check Valve Condition</button>
+    <button (click)="trainModel()" [disabled]="isTraining">Train Model</button>
+
+  </div>
+  
+  <div class="output-group">
+    <label for="outputText" class="label">Output :</label>
+    <textarea id="outputText" rows="5" readonly class="output-text" [value]="outputText"></textarea>
+  </div>
+</div>
